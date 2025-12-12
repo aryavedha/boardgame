@@ -36,5 +36,6 @@ jobs:
       - name: Check for GitLeaks
         uses: gacts/gitleaks@v1
 
-      - name:
+      - name: Run Gitleaks
          run: gitleaks detect --source .
+
