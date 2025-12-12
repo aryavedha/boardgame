@@ -20,10 +20,13 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    steps:    
     - name: compile
       run: mvn compile
+    steps:  
     - name: test
       run: mvn test
+    steps:
     - name: build
       run: mvn build
       
