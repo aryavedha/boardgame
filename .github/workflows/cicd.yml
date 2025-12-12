@@ -37,4 +37,4 @@ jobs:
         uses: gacts/gitleaks@v1
 
       - name:
-         run: gitleaks detect --source . --exitcode 1
+         run: gitleaks detect --source .
