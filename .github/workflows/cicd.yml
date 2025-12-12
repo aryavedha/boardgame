@@ -19,16 +19,20 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        cache: maven
-    steps:    
+        cache: maven    
     - name: compile
       run: mvn compile
-    steps:  
+      
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
     - name: test
       run: mvn test
-    steps:
-    - name: build
-      run: mvn build
       
   gitleaks:
     runs-on: ubuntu-latest
