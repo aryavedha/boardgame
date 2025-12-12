@@ -22,6 +22,7 @@ jobs:
       run: mvn compile
 
   package:
+    needs: package
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -31,10 +32,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven    
-    - name: test
+    - name: package
       run: mvn package
 
   test:
+    needs: package
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -48,6 +50,7 @@ jobs:
       run: mvn test
       
   gitleaks:
+    needs: test  
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -60,6 +63,7 @@ jobs:
         run: gitleaks detect --source .
 
   docker:
+    needs: gitleaks
     runs-on: ubuntu-latest
     steps:
       -
